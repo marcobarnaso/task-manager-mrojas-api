@@ -6,6 +6,14 @@ const taskRouter = require('./db/routers/task')
 const app = express()
 const port = process.env.PORT
 
+app.use(express.json())
+app.use(userRouter)
+app.use(taskRouter)
+
+app.listen(port, () => {
+    console.log(`Local server is up and running on port ${port}!`)
+})
+
 // app.use((req, res, next) => { // if you don't call next() the routers wont be executed
 //     res.status(503).send('Site is under Maintenance, please try again later')
 // })
@@ -48,14 +56,6 @@ const port = process.env.PORT
 //     res.send()
 // }, (error, req, res, next) => {
 //     res.status(400).send({ error: error.message })
-// })
-
-// app.use(express.json())
-// app.use(userRouter)
-// app.use(taskRouter)
-
-// app.listen(port, () => {
-//     console.log(`Local server is up and running on port ${port}!`)
 // })
 
 // const User = require('../src/models/user')
